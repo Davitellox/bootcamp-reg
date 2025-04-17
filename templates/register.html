@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootcamp Registration Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f3f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            color: #444;
+            font-weight: 500;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+        
+        .options-wrapper {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            background: #fff;
+            transition: background 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #eaf1fb;
+        }
+        
+        .option input[type="checkbox"] {
+            display: none;
+        }
+        
+        .custom-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4A90E2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .custom-check::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #4A90E2;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.2s ease;
+        }
+        
+        .option input[type="checkbox"]:checked+.custom-check::after {
+            transform: scale(1);
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Register</h2>
+
+        {% if success %}
+        <div class="success" id="successMessage">Registration successful!</div>
+        {% endif %}
+
+        <form method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" required />
+
+            <label>Select Options:</label>
+            <div class="options-wrapper">
+                <label class="option">
+          Graphics Design
+          <input type="checkbox" name="options" value="Graphics Design" />
+          <span class="custom-check"></span>
+        </label>
+                <label class="option">
+           Python Programming
+          <input type="checkbox" name="options" value="Python Programming" />
+          <span class="custom-check"></span>
+        </label>
+                <label class="option">
+            Web Development
+          <input type="checkbox" name="options" value="Web Development" />
+          <span class="custom-check"></span>
+        </label>
+                <label class="option">
+            App Development
+            <input type="checkbox" name="options" value="App Development" />
+            <span class="custom-check"></span>
+          </label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Auto-hide success message after 3 seconds
+        const successMsg = document.getElementById('successMessage');
+        if (successMsg) {
+            setTimeout(() => {
+                successMsg.style.opacity = '0';
+                setTimeout(() => successMsg.remove(), 500);
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
